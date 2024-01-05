@@ -23,12 +23,12 @@ impl Boid {
             comfort_zone: 20f32,
         }
     }
-    pub fn draw(&self, color: Color) {
+    pub fn draw(&self, color: Color, thickness: f32) {
         let perp = self.dir.perp().normalize();
         let (a, b, c) = (self.pos-self.dir*4f32-perp*4f32,
                          self.pos-self.dir*4f32+perp*4f32,
                          self.pos+self.dir*8f32);
-        draw_triangle_lines(a, b, c, 1f32, color);
+        draw_triangle_lines(a, b, c, thickness, color);
     }
     pub fn draw_sensory_range(&self, color: Color) {
         draw_circle_lines(self.pos.x, self.pos.y, self.detection_radius, 1f32, color);
